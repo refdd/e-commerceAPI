@@ -27,6 +27,11 @@
     "mongoose": "^8.9.4",
     "stripe": "^17.5.0"
   },
+  "vercel": {
+    "build": {
+      "output": "standalone"
+    }
+  },
   "devDependencies": {
     "nodemon": "^3.1.9"
   }
