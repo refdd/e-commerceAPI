@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors"; // Add this import
 import path from "path";
-import authRoutes from "../backend/routes/auth.route.js";
+import authRoutes from "./routes/auth.route.js";
 import productsRoutes from "./routes/product.route.js";
 import cartRoutes from "./routes/cartRoutes.route.js";
 import couponsRoutes from "./routes/coupons.route.js";
