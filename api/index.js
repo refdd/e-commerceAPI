@@ -12,7 +12,7 @@ import { connectDB } from "./lib/db.js";
 import cookieParser from "cookie-parser";
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 5000; // Fixed typo in PORT
+const PORT = process.env.PORT || 300; // Fixed typo in PORT
 const __dirname = path.resolve();
 // Configure CORSP
 app.use(
@@ -27,7 +27,8 @@ app.use(
 );
 
 // middleware
-app.use(express.json({ limit: "10mb" })); // allows you to parse the body of the request
+// app.use(express.json({ limit: "1mb" }));
+// allows you to parse the body of the request
 
 app.use(cookieParser());
 
