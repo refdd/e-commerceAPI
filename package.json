@@ -1,12 +1,12 @@
 {
   "name": "e-commerce",
   "version": "1.0.0",
-  "main": "backend/index.js",
+  "main": "api/index.js",
   "engines": {
      "node": ">= 14.x"
   },
   "scripts": {
-    "dev": "nodemon backend/index.js"
+    "dev": "nodemon api/index.js"
   },
   "keywords": [],
   "author": "",
