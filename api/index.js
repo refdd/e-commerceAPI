@@ -1,52 +1,52 @@
 import express from "express";
 import dotenv from "dotenv";
-import cors from "cors"; // Add this import
+import cors from "cors";
 import path from "path";
+import cookieParser from "cookie-parser";
+
 import authRoutes from "./routes/auth.route.js";
 import productsRoutes from "./routes/product.route.js";
 import cartRoutes from "./routes/cartRoutes.route.js";
 import couponsRoutes from "./routes/coupons.route.js";
-import PaymentRoutes from "./routes/payment.route.js";
+import paymentRoutes from "./routes/payment.route.js";
 import analyticsRoutes from "./routes/analytics.route.js";
 import { connectDB } from "./lib/db.js";
-import cookieParser from "cookie-parser";
+
 dotenv.config();
+
 const app = express();
-const PORT = process.env.PORT || 300; // Fixed typo in PORT
+const PORT = process.env.PORT || 3000; // Fixed PORT value
 const __dirname = path.resolve();
-// Configure CORSP
+
+// Configure CORS
 app.use(
   cors({
     origin: [
-      "http://localhost:5173", // Local development URL
-      "https://e-commerce-api-theta-bice.vercel.app", // Vercel deployment URL
-      // Add any additional URLs if needed
+      "http://localhost:5173",
+      "https://e-commerce-api-theta-bice.vercel.app",
     ],
-    credentials: true, // This is crucial for handling cookies
+    credentials: true,
   })
 );
 
-// middleware
-// app.use(express.json({ limit: "1mb" }));
-// allows you to parse the body of the request
-
+// Middleware
+app.use(express.json({ limit: "10mb" }));
 app.use(cookieParser());
 
-// authorization
-app.use("/auth", authRoutes);
-app.use("/products", productsRoutes);
-app.use("/cart", cartRoutes);
-app.use("/coupons", couponsRoutes);
-app.use("/payments", PaymentRoutes);
-app.use("/analytics", analyticsRoutes);
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "/frontend/dist")));
+// API Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/products", productsRoutes);
+app.use("/api/cart", cartRoutes);
+app.use("/api/coupons", couponsRoutes);
+app.use("/api/payments", paymentRoutes);
+app.use("/api/analytics", analyticsRoutes);
 
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
-//   });
-// }
+// Database Connection
+connectDB();
+
+// Start Server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-  connectDB();
 });
+
+export default app; // Needed for Vercel deployment
