@@ -2,9 +2,6 @@
   "name": "e-commerce",
   "version": "1.0.0",
   "main": "api/index.js",
-  "engines": {
-     "node": ">= 14.x"
-  },
   "scripts": {
     "dev": "nodemon api/index.js"
   },
