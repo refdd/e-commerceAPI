@@ -17,11 +17,7 @@ const __dirname = path.resolve();
 // Configure CORSP
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173", // Local development URL
-      "https://e-commerce-api-theta-bice.vercel.app", // Vercel deployment URL
-      // Add any additional URLs if needed
-    ],
+    origin: "http://localhost:5173", // Replace with your frontend URL
     credentials: true, // This is crucial for handling cookies
   })
 );
